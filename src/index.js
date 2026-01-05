@@ -1,51 +1,59 @@
-import { stdin as input, stdout as output } from 'node:process';
+import  { getUserInput } from './utils/getUserInput.js'
+import addTask  from './commands/addTask.js';
 
-
-console.log('\n—— Menu ——\n1) add "task description".');
-console.log('2) list.');
-console.log('3) delete task:id.');
-console.log('4) mark-in-progress task:id.');
-console.log('5) mark-done task:id.');
-console.log('6) update task:id "new description".');
-
-
-
-
-const   [ , , cmd, ...rest] = process.argv;
-
-console.log(`argv: ${cmd} - ${rest}`);
-
-if (cmd === 'add' || cmd) {
-    
+async function showMenu() {
+    console.log('1) add "task description".');
+    console.log('2) list.');
+    console.log('3) delete task:id.');
+    console.log('4) mark-in-progress task:id.');
+    console.log('5) mark-done task:id.');
+    console.log('6) update task:id "new description".');
+    const answer = await getUserInput("Enter one option: ");
+    return answer;
 }
 
 
+const   handleInput = (option) => {
+    if(option === "1") {
+        addTask();
+    }
+    else if(option === "2") {
+        listTasks();
+    }
+    else if(option === "3") {
+        deleteTask();
+    }
+    else if (option === "4") {
+        markInProgress();
+    }
+    else if (option === "5") {
+        markDone();
+    }
+    else if (option === "6") {
+        updateTask();
+    }
+    else {
+        console.log("choose a valid option!");
+    }
+}
 
-// import fs from  'node:fs';
-// import readline from 'node:readline/promises';
-// import  { stdin as input, stdout as output } from 'node:process';
+function main() {
+    console.log("Welcome to Task Manager!🙌🏻");
+    showMenu().then((option) => {
+        console.log("option selected:", option);
+        handleInput(option);
+    })
+    .catch((err) => {
+        console.error("Error:", err);
+    });
 
+}
 
-// const   rl = readline.createInterface( { input,  output } );
+main();
+// const   [ , , cmd, ...rest] = process.argv;
 
-// async   function main() {
-//     while(true) {
-//         const choice = (await rl.question('\nMenu — (a)dd, (l)ist, (q)uit: ')).trim().toLocaleLowerCase();
-//         if (choice === 'q' || choice === 'quit') break;
+// console.log(`argv: ${cmd} - ${rest}`);
 
-//         if (choice === 'a' || choice === 'add') {
-            
-//         }
+// if (cmd === 'add' || cmd) {
     
-    
-//     }
-//     console.log("breaking...");
 // }
-
-// try{
-//     await main();
-// } finally{
-//     rl.close();
-//     console.log("closed");
-// }
-// // process.exit(0);
