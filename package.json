@@ -1,0 +1,21 @@
+{
+  "name": "task-tracker-cli",
+  "version": "1.0.0",
+  "description": "Task Tracker is a project used to track and manage your tasks.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --watch index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1MhDjant23/task-tracker-cli.git"
+  },
+  "author": "Mohamed Ait Tajante",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1MhDjant23/task-tracker-cli/issues"
+  },
+  "homepage": "https://github.com/1MhDjant23/task-tracker-cli#readme"
+}
