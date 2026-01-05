@@ -1,0 +1,23 @@
+[
+    {
+    "id": "1",
+    "description": "Write installation, usage, and contribution sections for the repo.",
+    "status": "todo",
+    "createdAt": "2026-01-05T08:00:00.000Z",
+    "updateAt": "2026-02-06"
+},
+    {
+    "id": "2",
+    "description": "Add CLI option to create a new task and persist to DB/tasks.json.",
+    "status": "in-progress",
+    "createdAt": "2026-01-04T10:30:00.000Z",
+    "updateAt": "2026-02-06"
+},
+    {
+    "id": "3",
+    "description": "Ensure rl.close() is called after receiving input; add tests.",
+    "status": "todo",
+    "createdAt": "2026-01-05T09:15:00.000Z",
+    "updateAt": "2026-02-06"
+}
+]
