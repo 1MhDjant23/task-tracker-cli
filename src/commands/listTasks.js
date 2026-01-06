@@ -1,5 +1,5 @@
-import chalk from 'chalk';
 import getTasks from '../utils/getTasks.js';
+import chalk from 'chalk';
 
 export default async  function listTasks() {
     const   tasks = await getTasks();

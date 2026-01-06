@@ -2,6 +2,7 @@ import getTasks from "../utils/getTasks.js";
 import { getUserInput } from "../utils/getUserInput.js";
 import updateDb from "../utils/updateDb.js";
 import path from 'node:path';
+import chalk from "chalk";
 
 export default async function   updateTask() {
     let     tasks = await getTasks();
@@ -26,6 +27,6 @@ export default async function   updateTask() {
 
     await updateDb(filePath, tasks);
     console.log(
-        chalk.green.bold(`✅ Task #${id} updated successfully! New description: "${newDesc}"`)
+        chalk.green.bold(`✅ Task #${idx} updated successfully! New description: "${newDesc}"`)
     );
 }

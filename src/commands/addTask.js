@@ -1,13 +1,20 @@
 import  { getUserInput }    from '../utils/getUserInput.js';
 import  updateDb            from '../utils/updateDb.js';
-import  getTasks            from  '../utils/getTasks.js';
+import  getTasks            from '../utils/getTasks.js';
+import  path                from 'node:path';
+import chalk                from 'chalk';
 
 export default async function    addTask() {
-    const tasks = await getTasks();
-    
+    const   tasks = await getTasks();
+    const   filePath = path.resolve(process.cwd(), 'src', 'DB', 'tasks.json');
+
     try
     {
         const desc = await getUserInput(chalk.yellow.bold("Enter Task Description: "));
+        if (!desc || desc.trim().length === 0) {
+            console.log(chalk.red.bold("❌ Task description cannot be empty!"));
+            return;
+        }
         let isAdded = false;
         tasks.forEach(element => {
             if (element.description === desc)

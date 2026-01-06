@@ -4,7 +4,7 @@
     "description": "Write a task manager cli using nodeJs",
     "status": "in-progress",
     "createdAt": "2026-01-05T08:00:00.000Z",
-    "updateAt": "2026-02-06"
+    "updateAt": "2026-01-06T19:03:33.645Z"
   },
   {
     "id": 2,
@@ -29,16 +29,16 @@
   },
   {
     "id": 5,
-    "description": "ttttttttttttt",
-    "status": "todo",
-    "createdAt": "2026-01-06T10:36:04.865Z",
-    "updateAt": "2026-01-06T10:36:04.865Z"
+    "description": "finishing",
+    "status": "done",
+    "createdAt": "2026-01-06T10:40:50.807Z",
+    "updateAt": "2026-01-06T19:35:08.762Z"
   },
   {
     "id": 6,
-    "description": "finish addTask",
+    "description": "testing......",
     "status": "todo",
-    "createdAt": "2026-01-06T10:40:50.807Z",
-    "updateAt": "2026-01-06T10:40:50.807Z"
+    "createdAt": "2026-01-06T19:13:25.671Z",
+    "updateAt": "2026-01-06T19:13:25.671Z"
   }
 ]
