@@ -2,7 +2,7 @@
   {
     "id": 1,
     "description": "Write a task manager cli using nodeJs",
-    "status": "todo",
+    "status": "in-progress",
     "createdAt": "2026-01-05T08:00:00.000Z",
     "updateAt": "2026-02-06"
   },

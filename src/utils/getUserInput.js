@@ -5,7 +5,6 @@ export async function getUserInput(query) {
     const   rl = readline.createInterface({ input, output });
     try {
         const   answer = await rl.question(query);
-        console.log(answer.input);
         return answer;
     } finally {
         rl.close();

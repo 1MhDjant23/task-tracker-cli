@@ -1,28 +1,32 @@
 import  { getUserInput } from './utils/getUserInput.js'
-import addTask  from './commands/addTask.js';
-import listTasks from './commands/listTasks.js';
-import deleteTask from './commands/deleteTask.js';
+import  addTask          from './commands/addTask.js';
+import  listTasks        from './commands/listTasks.js';
+import  deleteTask       from './commands/deleteTask.js';
+import  updateState      from './commands/updateStatus.js';
+import  updateTask       from './commands/updateTask.js';
+import  chalk            from 'chalk'; /* jus for colored and styled console */
 
 async function showMenu() {
-    console.log('0) exit');
-    console.log('1) add "task description".');
-    console.log('2) list.');
-    console.log('3) delete task:id.');
-    console.log('4) mark-in-progress task:id.');
-    console.log('5) mark-done task:id.');
-    console.log('6) update task:id "new description".');
-    const answer = await getUserInput("Enter one option: ");
+    console.log(chalk.bold.blue('\n=== Task Tracker Menu ==='));
+    console.log(chalk.green('0) Exit Program'));
+    console.log(chalk.green('1) Add New Task'));
+    console.log(chalk.green('2) List All Tasks'));
+    console.log(chalk.green('3) Delete Task'));
+    console.log(chalk.green('4) Mark-Task-In-Progress'));
+    console.log(chalk.green('5) Mark-Task-Done'));
+    console.log(chalk.green('6) Update Task'));
+    const answer = await getUserInput(chalk.yellow.bold("Enter One Option: "));
+
     return answer;
 }
-
 
 const   handleInput = async (option) => {
     let nextOption;
     if (option === "0") {
-        console.log('exiting...');
+        console.log(chalk.magenta.bold('👋 Exiting...'));
         process.exit(0);
     }
-    if(option === "1") {
+    else if(option === "1") {
         await addTask();
         nextOption = await showMenu()
         await handleInput(nextOption);
@@ -38,36 +42,47 @@ const   handleInput = async (option) => {
         await handleInput(nextOption);
     }
     else if (option === "4") {
-        markInProgress();
+        await updateState("in-progress");
+        nextOption = await showMenu()
+        await handleInput(nextOption);
     }
     else if (option === "5") {
-        markDone();
+        await updateState("done");
+        nextOption = await showMenu()
+        await handleInput(nextOption);
     }
     else if (option === "6") {
-        updateTask();
+        await updateTask();
+        nextOption = await showMenu()
+        await handleInput(nextOption);
     }
     else {
-        console.log("choose a valid option!");
+        console.log(chalk.red.bold("❌ Choose a valid option!"));
+        nextOption = await showMenu();
+        await handleInput(nextOption);
     }
 }
 
-function main() {
-    console.log("Welcome to Task Manager!🙌🏻");
-    showMenu().then((option) => {
-        console.log("option selected:", option);
-        handleInput(option);
-    })
-    .catch((err) => {
-        console.error("Error:", err);
-    });
-
+async function main() {
+    try {
+        console.log(chalk.green.bold("Welcome to Task Manager! 🙌🏻"));
+        let option;
+        do {
+            option = await showMenu();
+            await handleInput(option);
+        } while (option !== "0");
+    } catch (err) {
+        if (err.code === 'ABORT_ERR' || err.name === 'AbortError') {
+            console.log('\n' + chalk.magenta.bold('👋 Exiting... (Ctrl+C)'));
+            process.exit(0);
+        } else {
+            console.error(chalk.red('Unexpected error:'), err);
+            process.exit(1);
+        }
+    }
 }
 
-main();
-// const   [ , , cmd, ...rest] = process.argv;
-
-// console.log(`argv: ${cmd} - ${rest}`);
-
-// if (cmd === 'add' || cmd) {
-    
-// }
+/**
+ * The main start of program
+*/
+main(); 

@@ -7,13 +7,13 @@ import path from 'node:path';
  */
 
 export  default async function    getTasks() {
-    const   filePath = path.resolve(process.cwd(), 'src', 'Db', 'tasks.js');
+    const   filePath = path.resolve(process.cwd(), 'src', 'DB', 'tasks.json');
     try {
         await fs.access(filePath, fs.constants.R_OK);
         const   data = await fs.readFile(filePath, 'utf-8');
         const   tasks = JSON.parse(data);
         return tasks;
     } catch (error) {
-        console.error(`Error: ${error}`);
+        return [];
     }
 }

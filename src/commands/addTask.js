@@ -7,21 +7,20 @@ export default async function    addTask() {
     
     try
     {
-        const desc = await getUserInput("Enter task description: ");
+        const desc = await getUserInput(chalk.yellow.bold("Enter Task Description: "));
         let isAdded = false;
         tasks.forEach(element => {
             if (element.description === desc)
                 isAdded = true;
-            console.log(`id: ${element.id}, Desc: ${element.description}, Status: ${element.status}`);
         });
         if (!isAdded) { /*  prevent duplicat tasks  */ 
             tasks.push(newTaskObj(tasks.length + 1, desc, "todo"));
             await updateDb(filePath, tasks)
-            .finally( () => console.log("new Task added to DataBase"));
+            .finally(() => console.log(chalk.green.bold('✅ New task added to database!')));
         } else
-            console.log("Task already added!");
+            console.log(chalk.red.bold('⚠️ Task already exists!'));
     } catch (err) {
-        console.log(`error: ${err}`);
+        console.log(chalk.red.bold(`❌ : ${err}`));
     }
 }
 
