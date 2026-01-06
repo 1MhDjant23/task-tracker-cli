@@ -1,16 +1,12 @@
-import  path                from 'node:path';
-import  fs                  from 'node:fs/promises';
-import  { cwd }             from 'node:process';
 import  { getUserInput }    from '../utils/getUserInput.js';
 import  updateDb            from '../utils/updateDb.js';
+import  getTasks            from  '../utils/getTasks.js';
 
 export default async function    addTask() {
-
-    const filePath = path.resolve(cwd(), 'src', 'DB', 'tasks.json');
+    const tasks = await getTasks();
+    
     try
     {
-        const data = await fs.readFile(filePath, 'utf-8');
-        const tasks = JSON.parse(data);
         const desc = await getUserInput("Enter task description: ");
         let isAdded = false;
         tasks.forEach(element => {
