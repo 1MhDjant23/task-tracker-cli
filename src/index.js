@@ -2,6 +2,7 @@ import  { getUserInput } from './utils/getUserInput.js'
 import addTask  from './commands/addTask.js';
 
 async function showMenu() {
+    console.log('0) exit');
     console.log('1) add "task description".');
     console.log('2) list.');
     console.log('3) delete task:id.');
@@ -13,9 +14,19 @@ async function showMenu() {
 }
 
 
-const   handleInput = (option) => {
+const   handleInput = async (option) => {
+    if (option === "0") {
+        console.log('exiting...');
+        process.exit(0);
+    }
     if(option === "1") {
-        addTask();
+        await addTask()
+        .then(() => {
+            showMenu()
+            .then((option) => {
+                handleInput(option);
+            })
+        })
     }
     else if(option === "2") {
         listTasks();
